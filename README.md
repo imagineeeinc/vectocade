@@ -1,2 +1,2 @@
 # vectocade
-a pure vector graphics 2d canvas rendering engine
+A Fantasy Computer for making tiny retro games, made with js
