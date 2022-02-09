@@ -11,7 +11,6 @@
 body {
   text-align: center;
   color: #2c3e50;
-  margin-top: 20vh;
   background-color: var(--black);
   color: var(--white);
 }
@@ -24,9 +23,4 @@ body {
 }
 ::-webkit-scrollbar-thumb{
 	background-color: var(--grey);
-}
-#icon {
-  width: 40vh;
-  filter: drop-shadow(0px 5px 50px var(--shadow));
-  margin: 20px;
 }
