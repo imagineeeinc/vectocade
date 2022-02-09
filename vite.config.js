@@ -9,8 +9,8 @@ module.exports = {
 		outDir: '../dist',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        editor: resolve(__dirname, 'editor/index.html')
+        main: resolve(__dirname, 'src/index.html'),
+        editor: resolve(__dirname, 'src/editor/index.html')
       }
     }
   }
