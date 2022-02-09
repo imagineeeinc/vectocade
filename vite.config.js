@@ -4,4 +4,7 @@ module.exports = {
 	title: 'Vectocade',
 	description: 'A Fantasy Computer for making tiny retro games, made with js',
 	root: './src',
+        build: {
+              outDir: '../dist'
+        }
 }
