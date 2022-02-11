@@ -60,4 +60,5 @@ button {
   background-color: var(--accent);
   color: var(--white);
   padding: 3px;
+	cursor: pointer;
 }
