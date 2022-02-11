@@ -10,7 +10,8 @@ module.exports = {
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'src/index.html'),
-        editor: resolve(__dirname, 'src/editor/index.html')
+        editor: resolve(__dirname, 'src/editor/index.html'),
+	play: resolve(__dirname, 'src/play/index.html')
       }
     }
   }
