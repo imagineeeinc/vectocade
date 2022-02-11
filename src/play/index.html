@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="../img/vectocade.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <title>Play - Vectocade</title>
+  </head>
+  <body style="text-align: center;">
+    <h1>⚠Work in progress⚠</h1>
+    <div id="run" aria-hidden="true" class="modal">
+      <div tabindex="-1" data-micromodal-close>
+        <div role="dialog" aria-modal="true" aria-labelledby="run-title" >
+          <header>
+            <h2 id="run-title">
+              Run a cart on Vectocade
+            </h2>
+            <button aria-label="Close modal" data-micromodal-close class="close-modal">&times;</button>
+          </header>
+          <div id="run-content">
+            Select a cart from your filesystem to run on vectocade.
+            <br><br>
+            <label file>
+              Select Cart
+              <input type="file" id="cart-file" accept=".cart" style="display: none;"/>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="../js/global.js"></script>
+    <script type="module" src="../js/play.js"></script>
+  </body>
+</html>

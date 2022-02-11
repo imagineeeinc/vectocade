@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./img/vectocade.svg" />
+    <link rel="icon" type="image/svg+xml" href="../img/vectocade.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +11,52 @@
     <title>Editor - Vectocade</title>
   </head>
   <body>
+    <main>
+      <div id="code-editor"></div>
+    </main>
+    <!--new modal-->
+    <div id="new" aria-hidden="true" class="modal">
+      <div tabindex="-1" data-micromodal-close>
+        <div role="dialog" aria-modal="true" aria-labelledby="new-title" >
+          <header>
+            <h2 id="new-title">
+              New Vectocade Cart
+            </h2>
+            <button aria-label="Close modal" data-micromodal-close class="close-modal">&times;</button>
+          </header>
+          <div id="new-content">
+            Create a new vectocade cart.
+            <br><br>
+            <input type="text" placeholder="name">
+            <br>
+            <br>
+            <button>Create!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--open modal-->
+    <div id="open" aria-hidden="true" class="modal">
+      <div tabindex="-1" data-micromodal-close>
+        <div role="dialog" aria-modal="true" aria-labelledby="open-title" >
+          <header>
+            <h2 id="open-title">
+              Open Vectocade Cart
+            </h2>
+            <button aria-label="Close modal" data-micromodal-close class="close-modal">&times;</button>
+          </header>
+          <div id="open-content">
+            Select an vectocade cart from your device.
+            <br><br>
+            <label file>
+              Select Cart
+              <input type="file" id="cart-file" accept=".cart" style="display: none;"/>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="../js/global.js"></script>
+    <script type="module" src="../js/editor.js"></script>
   </body>
 </html>

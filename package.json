@@ -9,5 +9,11 @@
   },
   "devDependencies": {
     "vite": "^2.7.2"
+  },
+  "dependencies": {
+    "@codemirror/basic-setup": "^0.19.1",
+    "@codemirror/lang-javascript": "^0.19.7",
+    "@codemirror/view": "^0.19.42",
+    "micromodal": "^0.4.10"
   }
 }

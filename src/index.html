@@ -10,14 +10,31 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <title>Vectocade</title>
   </head>
-  <body>
-    <header>
+  <body data-scroll-container>
+    <nav>
+      <img src="./img/vectocade.png" id="app-icon">
+      <a href="editor/#new">New</a>
+      <a href="editor/#open">Open</a>
+      <a href="play/">Play</a>
+      <a href="play/#run">Run</a>
+      <a href="#about">About</a>
+    </nav>
+    <header data-scroll-section>
       <img src="./img/vectocade.png" id="icon">
       <h1>Vectocade</h1>
       <h3>A Fantasy Computer for making tiny retro games</h3>
     </header>
-    <div class="content">
-      <h6><i>⚠A work in progress⚠</i></h6>
+    <div class="content" id="about" data-scroll-section data-scroll-speed="2">
+      <p>
+        Vectocade is a small browser bassed fantasy computer for making and playing tiny retro games. Games (also known as carts) are written in JavaScript.
+      </p>
+      <p>
+        Vectocade is designed to encourage play, creativity and problem solving.
+      </p>
+      <p>
+        By working in a restricted environment of colours, processing power, graphics, sound and controls; 
+        it sparks creativity and problem solving.
+      </p>
     </div>
     <script type="module" src="./js/global.js"></script>
     <script type="module" src="./js/home.js"></script>

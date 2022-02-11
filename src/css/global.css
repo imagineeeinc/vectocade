@@ -8,6 +8,11 @@
   --accent: #65ff00;
   accent-color: var(--accent);
 }
+* {
+  font-family: inherit;
+  outline: none;
+  transition-duration: .2s;
+}
 body {
   text-align: center;
   color: #2c3e50;
@@ -23,4 +28,36 @@ body {
 }
 ::-webkit-scrollbar-thumb{
 	background-color: var(--grey);
+}
+a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+a:hover {
+  color: var(--white);
+  cursor: pointer;
+}
+label[file] {
+  display: inline-block;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: var(--grey);
+  cursor: pointer;
+  color: var(--black);
+}
+input[type=text] {
+  font-size: xx-large;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--grey);
+  color: var(--black);
+  padding: 3px;
+}
+button {
+  font-size: xx-large;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--accent);
+  color: var(--white);
+  padding: 3px;
 }

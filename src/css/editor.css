@@ -1,0 +1,24 @@
+main {
+	height: 100%;
+	width: 100%;
+}
+#code-editor {
+	text-align: left;
+	font-family: 'VT323', monospace;
+	width: 50%;
+	height: 100%;
+}
+.cm-editor {
+	font-size: large;
+	font-family: 'VT323', monospace;
+}
+.cm-line::selection {
+	background: #091f2b;
+}
+.cm-cursor { 
+	border-left: 2px solid var(--accent);
+}
+.cm-editor.cm-focused { outline: none }
+.cm-editor .cm-content { font-family: 'VT323', monospace }
+.cm-activeLine { background-color: #091f2b !important; }
+.cm-gutter, .cm-activeLineGutter { background-color: #091f2b !important;border-right: none !important; }
