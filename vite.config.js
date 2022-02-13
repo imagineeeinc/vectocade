@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 module.exports = {
-	base: '/vectocade/',
+	base: process.env.DEPO == 'vercel' ? '/' : '/vectocade/',
 	title: 'Vectocade',
 	description: 'A Fantasy Computer for making tiny retro games, made with js',
 	root: './src',
