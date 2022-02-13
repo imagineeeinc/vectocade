@@ -2,7 +2,7 @@
 A Fantasy Computer for making tiny retro games, made with js
 
 # Get Started
-[here](https://vectocade.vercel.app/)
+[here](https://vectocade.vercel.app/), 
 [here also](https://imagineeeinc.github.io/vectocade/)
 
 ## Specs
