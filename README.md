@@ -1,6 +1,10 @@
 # vectocade
 A Fantasy Computer for making tiny retro games, made with js
 
+# Get Started
+[here](https://vectocade.vercel.app/)
+[here also](https://imagineeeinc.github.io/vectocade/)
+
 ## Specs
 Display: 160x144@30fps:2 bit colours (Gameboy Pallet)
 Sound: Undecided (4 channel?)
