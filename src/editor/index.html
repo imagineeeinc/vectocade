@@ -12,7 +12,23 @@
   </head>
   <body>
     <main>
-      <div id="code-editor"></div>
+      <nav>
+        <a href="../index.html">
+          <img src="../img/vectocade.svg" alt="Vectocade Logo" class="app-icon"/>
+        </a>
+        <a>File</a>
+        <a>Edit</a>
+        <a href="../about/index.html">About</a>
+      </nav>
+      <div id="code">
+        <span>Code Editor</span>
+        <div id="code-editor"></div>
+      </div>
+      <div id="output">
+        <span>Output</span>
+        <br>
+        <canvas id="output-screen">Hmm... Looks like your browser dosn't support the canvas API, Upgrade to a modern browser to support canvas</canvas>
+      </div>
     </main>
     <!--new modal-->
     <div id="new" aria-hidden="true" class="modal">
@@ -27,10 +43,10 @@
           <div id="new-content">
             Create a new vectocade cart.
             <br><br>
-            <input type="text" placeholder="name">
+            <input type="text" placeholder="name" id="new-cart-name">
             <br>
             <br>
-            <button>Create!</button>
+            <button id="create-btn">Create!</button>
           </div>
         </div>
       </div>

@@ -38,3 +38,53 @@ let editor = new EditorView({
   }),
   parent: document.getElementById("code-editor")
 })
+
+//cart class
+class cart {
+  constructor(name) {
+    this.name = name;
+    this.bitmaps = []
+    this.script = ''
+    //create a random hash
+    this.hash = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  }
+  export() {
+    return JSON.stringify(this)
+  }
+}
+//gloabl cart
+var global_cart = new cart('untitled')
+
+//updater
+setInterval(() => {
+  global_cart.script = editor.state.doc.text.join('\n')
+}, 1000)
+//Test Drawing
+var canvas = document.getElementById('output-screen')
+var ctx = canvas.getContext('2d')
+ctx.imageSmoothingEnabled = false
+var width = canvas.width
+var height = canvas.height
+var p = width/160
+var h = height/160
+ctx.fillStyle = 'red'
+ctx.fillRect(0*p, 0*h, p, h)
+ctx.fillRect(159*p, 0*h, p, h)
+ctx.fillRect(0*p, 143*h, p, h)
+ctx.fillRect(159*p, 143*h, p, h)
+ctx.fillStyle = 'blue'
+ctx.fillRect(160/2*p, 0*h, p, h)
+ctx.fillRect(159*p, 144/2*h, p, h)
+ctx.fillRect(160/2*p, 143*h, p, h)
+ctx.fillRect(0*p, 144/2*h, p, h)
+ctx.fillStyle = 'green'
+ctx.fillRect(160/2*p, 144/2*h, p*2, h*2)
+//
+
+// new cart
+document.getElementById('create-btn').onclick = () => {
+  global_cart = new cart(document.getElementById('new-cart-name').value)
+  localStorage.setItem('current-cart', new cart(document.getElementById('new-cart-name').value).export())
+  MicroModal.close('new');
+}
+//TODO: add a way to open a cart, a way to export a cart, reload a cart

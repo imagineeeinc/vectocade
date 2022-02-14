@@ -2,11 +2,50 @@ main {
 	height: 100%;
 	width: 100%;
 }
+#code {
+	position: fixed;
+	left: 0;
+	top: 30px;
+}
+#output {
+	position: fixed;
+}
+@media screen and (min-width: 801px) {
+	#code {
+		width: 50%;
+		height: 100%;
+	}
+	#output {
+		width: 50%;
+		height: 100%;
+		left: 50%;
+		top: 30px;
+	}
+	#output-screen {
+		width: 385px;
+	}
+}
+@media screen and (max-width: 800px) {
+	#code {
+		width: 100%;
+		height: 50%;
+	}
+	#output {
+		width: 100%;
+		height: 50%;
+		left: 0;
+		top: 50%;
+	}
+	#output-screen {
+		width: 300px;
+	}
+}
 #code-editor {
 	text-align: left;
 	font-family: 'VT323', monospace;
-	width: 50%;
-	height: 100%;
+	width: 100%;
+	height: 80%;
+	overflow: auto;
 }
 .cm-editor {
 	font-size: large;
@@ -22,3 +61,11 @@ main {
 .cm-editor .cm-content { font-family: 'VT323', monospace }
 .cm-activeLine { background-color: #091f2b !important; }
 .cm-gutter, .cm-activeLineGutter { background-color: #091f2b !important;border-right: none !important; }
+
+#output-screen {
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
+	margin-top: 10px;
+	background-color: var(--black);
+	aspect-ratio: 11.111/10;
+}

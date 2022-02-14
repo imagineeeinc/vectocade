@@ -62,3 +62,22 @@ button {
   padding: 3px;
 	cursor: pointer;
 }
+.app-icon {
+  position: fixed;
+  top: 5px;
+  left: 10px;
+  width: 2ch;
+}
+nav {
+  text-align: left;
+  padding: 2px 10px;
+  padding-left: 4ch;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 30px;
+  background-color: var(--black);
+  z-index: 10;
+  height: 30px;
+}
