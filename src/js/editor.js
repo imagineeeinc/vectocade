@@ -39,6 +39,7 @@ let editor = new EditorView({
   parent: document.getElementById("code-editor")
 })
 
+import {Vectocade} from './emu/arcade'
 //cart class
 class cart {
   constructor(name) {
@@ -54,37 +55,20 @@ class cart {
 }
 //gloabl cart
 var global_cart = new cart('untitled')
-
+var device = new Vectocade(document.getElementById('output-screen'), {})
+device.testRender()
 //updater
 setInterval(() => {
+  if (editor.state.doc.text.join('\n') == global_cart.script) return
   global_cart.script = editor.state.doc.text.join('\n')
+  localStorage.setItem('current-cart', global_cart.export())
+  device.loadROM(global_cart.script)
 }, 1000)
-//Test Drawing
-var canvas = document.getElementById('output-screen')
-var ctx = canvas.getContext('2d')
-ctx.imageSmoothingEnabled = false
-var width = canvas.width
-var height = canvas.height
-var p = width/160
-var h = height/160
-ctx.fillStyle = 'red'
-ctx.fillRect(0*p, 0*h, p, h)
-ctx.fillRect(159*p, 0*h, p, h)
-ctx.fillRect(0*p, 143*h, p, h)
-ctx.fillRect(159*p, 143*h, p, h)
-ctx.fillStyle = 'blue'
-ctx.fillRect(160/2*p, 0*h, p, h)
-ctx.fillRect(159*p, 144/2*h, p, h)
-ctx.fillRect(160/2*p, 143*h, p, h)
-ctx.fillRect(0*p, 144/2*h, p, h)
-ctx.fillStyle = 'green'
-ctx.fillRect(160/2*p, 144/2*h, p*2, h*2)
-//
 
 // new cart
 document.getElementById('create-btn').onclick = () => {
   global_cart = new cart(document.getElementById('new-cart-name').value)
   localStorage.setItem('current-cart', new cart(document.getElementById('new-cart-name').value).export())
-  MicroModal.close('new');
+  MicroModal.close('new')
 }
 //TODO: add a way to open a cart, a way to export a cart, reload a cart

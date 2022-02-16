@@ -1,5 +1,9 @@
+@font-face {
+  font-family: 'bit8';
+  src: url('../font/bit.ttf');
+}
 :root {
-  font-family: 'VT323', monospace;
+  font-family: 'VT323', 'bit8', monospace;
   font-size: 2em;
   --black: #071821;
   --white: #e0f8cf;

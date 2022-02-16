@@ -1,6 +1,6 @@
-import './asm';
+import {cpu} from './asm';
 import './controls';
-import './display';
+import {display, black, white, grey, gray, green, highlight} from './display';
 import './flopy';
 import './resources';
 import './sound';
@@ -12,3 +12,17 @@ You provide this key, it decrypts it, checks it and them executes the code.
 If it is a key that was diposed one second ago, it is still executed. Any older and not.
 Keys are refreshed every 300 frames (10s in optimal conditions where each frame is drawn 0.03s apart).
 */
+
+export class Vectocade {
+	constructor(canvas, o) {
+		this.display = new display(canvas);
+		this.cpu = new cpu(this.display);
+		this.o = o
+	}
+	testRender() {
+		this.display.preDefinedScene('test')
+	}
+	loadROM(rom) {
+		this.cpu.run(rom)
+	}
+}
