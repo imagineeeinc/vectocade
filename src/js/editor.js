@@ -7,6 +7,7 @@ import '../css/editor.css';
 import {EditorState, EditorView, basicSetup} from "@codemirror/basic-setup"
 import {javascript} from "@codemirror/lang-javascript"
 
+
 let myTheme = EditorView.theme({
   "&": {
 		
@@ -31,44 +32,78 @@ let myTheme = EditorView.theme({
     border: "none"
   }
 }, {dark: true})
-
-let editor = new EditorView({
-  state: EditorState.create({
-    extensions: [basicSetup, myTheme, javascript()]
-  }),
-  parent: document.getElementById("code-editor")
-})
-
-import {Vectocade} from './emu/arcade'
 //cart class
 class cart {
-  constructor(name) {
+  constructor(name, l) {
     this.name = name;
     this.bitmaps = []
     this.script = ''
+    if (l) {
+      this.load(l)
+    }
     //create a random hash
     this.hash = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   }
   export() {
     return JSON.stringify(this)
   }
+  load(l) {
+    this.name = l.name
+    this.bitmaps = l.bitmaps
+    this.script = l.script
+  }
 }
-//gloabl cart
-var global_cart = new cart('untitled')
+var global_cart
+var editor
+window.onload = () => {
+  if (localStorage.getItem('current-cart')) {
+    let c = JSON.parse(localStorage.getItem('current-cart'))
+    global_cart = new cart(c.name, c)
+    editor = new EditorView({
+      state: EditorState.create({
+        extensions: [basicSetup, myTheme, javascript()]
+      }),
+      parent: document.getElementById("code-editor")
+    })
+    editor.dispatch({
+      changes: {from: 0, insert: global_cart.script.split('\n').join('\n\n')}
+    })
+    device.loadROM(global_cart)
+  } else {
+    editor = new EditorView({
+      state: EditorState.create({
+        extensions: [basicSetup, myTheme, javascript()]
+      }),
+      parent: document.getElementById("code-editor")
+    })
+  }
+  //updater
+  setInterval(() => {
+    if (editor.state.doc.text.join('\n') == global_cart.script) return
+
+    global_cart.script = editor.state.doc.text.join('\n')
+    localStorage.setItem('current-cart', global_cart.export())
+    device.loadROM(global_cart)
+  }, 1000)
+}
+
+
+import {Vectocade} from './emu/arcade'
+//device setup
 var device = new Vectocade(document.getElementById('output-screen'), {})
 device.testRender()
-//updater
-setInterval(() => {
-  if (editor.state.doc.text.join('\n') == global_cart.script) return
-  global_cart.script = editor.state.doc.text.join('\n')
-  localStorage.setItem('current-cart', global_cart.export())
-  device.loadROM(global_cart.script)
-}, 1000)
+device.reset()
+
+
 
 // new cart
 document.getElementById('create-btn').onclick = () => {
   global_cart = new cart(document.getElementById('new-cart-name').value)
-  localStorage.setItem('current-cart', new cart(document.getElementById('new-cart-name').value).export())
+  localStorage.setItem('current-cart', global_cart.export())
   MicroModal.close('new')
+  history.replaceState({}, "", "#")
+}
+window.onbeforeunload = () => {
+  localStorage.setItem('current-cart', global_cart.export())
 }
 //TODO: add a way to open a cart, a way to export a cart, reload a cart

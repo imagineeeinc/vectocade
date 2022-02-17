@@ -22,7 +22,10 @@ export class Vectocade {
 	testRender() {
 		this.display.preDefinedScene('test')
 	}
+	reset() {
+		this.cpu.reset()
+	}
 	loadROM(rom) {
-		this.cpu.run(rom)
+		this.cpu.run(rom.script)
 	}
 }

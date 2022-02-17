@@ -9,20 +9,61 @@ main {
 }
 #output {
 	position: fixed;
+	overflow-y: scroll;
+}
+#output-screen {
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
+	margin-top: 10px;
+	background-color: var(--black);
+	aspect-ratio: 11.111/10;
+
+	filter: drop-shadow(0px 0px 30px var(--shadow));
+}
+#console {
+	height: 50%;
+	overflow-y: scroll;
+	font-size: medium;
+	text-align: left;
+	padding: 10px;
+	border: 1px var(--grey) solid;
+	margin: 10px;
+	margin-bottom: 40px;
+	border-radius: 8px;
 }
 @media screen and (min-width: 801px) {
 	#code {
-		width: 50%;
+		width: 60%;
 		height: 100%;
 	}
 	#output {
-		width: 50%;
+		width: 40%;
 		height: 100%;
-		left: 50%;
+		left: 60%;
 		top: 30px;
 	}
 	#output-screen {
-		width: 385px;
+		width: 300px;
+		border: black 40px solid;
+		border-radius: 30px;
+	}
+	#output-box::before {
+		content: "Vectocade DevKit";
+		display: inline;
+		position: absolute;
+		z-index: 10;
+		margin-top: 325px;
+		margin-left: 30%;
+		font-size: x-large;
+		color: var(--grey);
+	}
+}
+@media screen and (max-width: 981px) {
+	#output-screen {
+		width: 230px;
+	}
+	#output-box::before {
+		margin-top: 265px;
 	}
 }
 @media screen and (max-width: 800px) {
@@ -38,6 +79,7 @@ main {
 	}
 	#output-screen {
 		width: 300px;
+		border: var(--grey) 1px solid;
 	}
 }
 #code-editor {
@@ -62,10 +104,6 @@ main {
 .cm-activeLine { background-color: #091f2b !important; }
 .cm-gutter, .cm-activeLineGutter { background-color: #091f2b !important;border-right: none !important; }
 
-#output-screen {
-	image-rendering: pixelated;
-	image-rendering: crisp-edges;
-	margin-top: 10px;
-	background-color: var(--black);
-	aspect-ratio: 11.111/10;
+nav {
+	overflow-x: scroll;
 }

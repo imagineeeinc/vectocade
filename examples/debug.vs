@@ -1,0 +1,5 @@
+debug.log("A regular log")
+debug.info("Some info")
+debug.pass("The cart loaded")
+debug.warn("Too much ram is being used")
+debug.err("The cart is corrupted")

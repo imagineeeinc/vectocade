@@ -19,18 +19,18 @@ export class display {
 		if (scene == 'test') {
 			var p = this.p
 			var h = this.h
-			this.drawPixel(0, 0, 'red')
-			this.drawPixel(159, 0)
-			this.drawPixel(0, 143)
-			this.drawPixel(159, 143)
-			this.drawPixel(160/2, 0, 'blue')
-			this.drawPixel(159, 144/2)
-			this.drawPixel(160/2, 143)
-			this.drawPixel(0, 144/2)
-			this.drawLine(0, 0, 160, 144, 'orange')
-			this.drawLine(0, 144, 160, 0)
-			this.drawRect(160/2, 144/2, 2, 2, 'green')
-			this.drawText(160/4, 144/4, 'Hello World!', white, 20)
+			this.drawPixel(0, 0, 0)
+			this.drawPixel(159, 0, 0)
+			this.drawPixel(0, 143, 0)
+			this.drawPixel(159, 143, 0)
+			this.drawPixel(160/2, 0, 0)
+			this.drawPixel(159, 144/2, 0)
+			this.drawPixel(160/2, 143, 0)
+			this.drawPixel(0, 144/2, 0)
+			this.drawLine(0, 0, 160, 144, 2)
+			this.drawLine(0, 144, 160, 0, 2)
+			this.drawRect(160/2, 144/2, 2, 2, 4)
+			this.drawText(160/4, 144/4, 'Hello World!', 3)
 		}
 	}
 	reset() {
@@ -39,29 +39,39 @@ export class display {
 		ctx.fillRect(0,0,this.width,this.height)
 	}
 	drawPixel(x,y,c) {
-		let ctx = this.ctx || this.ctx.fillStyle
-		ctx.fillStyle = c
+		let ctx = this.ctx
+		ctx.fillStyle = resolveColour(c)
 		ctx.fillRect(x*this.p,y*this.h,this.p,this.h)
 	}
 	drawRect(x,y,w,h,c) {
 		let ctx = this.ctx
-		ctx.fillStyle = c || this.ctx.fillStyle
+		ctx.fillStyle = resolveColour(c)
 		ctx.fillRect(x*this.p,y*this.h,w*this.p,h*this.h)
 	}
 	drawLine(x1,y1,x2,y2,c) {
 		let ctx = this.ctx
-		ctx.strokeStyle = c || this.ctx.strokeStyle
+		ctx.strokeStyle = resolveColour(c)
 		ctx.beginPath()
 		ctx.moveTo(x1*this.p,y1*this.h)
 		ctx.lineTo(x2*this.p,y2*this.h)
 		ctx.stroke()
 	}
-	drawText(x,y,t,c, s) {
+	drawText(x,y,t,c) {
 		let ctx = this.ctx
-		ctx.font = s+"px 'bit8', 'VT323', monospace"
-		ctx.fillStyle = c || this.ctx.fillStyle
+		ctx.font = "15px 'bit8', 'VT323', monospace"
+		ctx.fillStyle = resolveColour(c)
 		ctx.fillText(t,x*this.p,y*this.h)
 	}
+	drawBitmap(x,y,b) {}
+	drawBackground(x,y,b) {}
+}
+function resolveColour(n) {
+	if (n == 0) return white
+	if (n == 1) return black
+	if (n == 2) return grey
+	if (n == 3) return highlight
+	if (n == 4) return green
+	return white
 }
 export const white = '#e0f8cf'
 export const black = '#071821'
