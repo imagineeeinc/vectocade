@@ -66,7 +66,7 @@ window.onload = () => {
       parent: document.getElementById("code-editor")
     })
     editor.dispatch({
-      changes: {from: 0, insert: global_cart.script.split('\n').join('\n\n')}
+      changes: {from: 0, insert: global_cart.script.split('\n').join('\n')}
     })
     device.loadROM(global_cart)
   } else {
