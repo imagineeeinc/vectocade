@@ -70,6 +70,7 @@ window.onload = () => {
     })
     device.loadROM(global_cart)
   } else {
+    var global_cart = new cart('Untitled')
     editor = new EditorView({
       state: EditorState.create({
         extensions: [basicSetup, myTheme, javascript()]
