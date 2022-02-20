@@ -19,4 +19,4 @@ Control: 'A' n 'B', D pad, 'Start' n 'Select'
 
 ## Graphics
 you have 2 background layers, one collision, one none Collison, max background size is 2048x2048px.
-Each sprite can only be 8x8px sprite, any decimal pixel values will be rounded to whole number.
+Each sprite can only be 16x16px sprite, any decimal pixel values will be rounded to whole number.

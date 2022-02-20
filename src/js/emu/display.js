@@ -1,8 +1,12 @@
 export class display {
 	constructor(canvas) {
+		//TODO: Use a background canvas and then render that to the mani canvas with pixels
 		this.d = canvas
 		this.ctx = this.d.getContext('2d')
-		this.ctx.imageSmoothingEnabled = false
+		this.ctx.imageSmoothingEnabled = false;
+		this.ctx.mozImageSmoothingEnabled = false;
+		this.ctx.webkitImageSmoothingEnabled = false;
+		this.ctx.msImageSmoothingEnabled = false;
 		this.width = this.d.width
 		this.height = this.d.height
 		this.p = this.width/160

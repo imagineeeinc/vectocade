@@ -13,7 +13,6 @@ main {
 }
 #output-screen {
 	image-rendering: pixelated;
-	image-rendering: crisp-edges;
 	margin-top: 10px;
 	background-color: var(--black);
 	aspect-ratio: 11.111/10;

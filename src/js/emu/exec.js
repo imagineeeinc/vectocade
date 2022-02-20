@@ -13,6 +13,11 @@ var cart = {
 		//FIXME: the wait code
 		return new Promise((resolve) => setTimeout(()=>{skip = false;resolve()}, s));
 	},
+	unsafe: {
+		overClock: (hertz)=>{
+			postMessage(['overClock', hertz])
+		}
+	},
 	net: {
 		httpRequest: (url, method, data) => {
 			return new Promise((resolve, reject
@@ -75,7 +80,6 @@ function handleContext(ctx) {
 	if (ctx[0] == 'clockTick') {
 		if (skip) return
 		cart.updateFn({}, ctx[1].elapsed)
-		emuDisplay.reset()
 		cart.drawFn(emuDisplay, ctx[1].elapsed)
 	}
 }
