@@ -1,4 +1,4 @@
-cart.init = () => {
+cart.init(() => {
 	var display = cart.initDisplay()
 	var controls = cart.initControler()
 	var sound = cart.initSound()
@@ -17,4 +17,4 @@ cart.init = () => {
 	function handleDebugIn(text, key) {
 		exec(text, key)
 	}
-}
+})

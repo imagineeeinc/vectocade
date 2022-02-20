@@ -1,113 +1,77 @@
 //TODO: NEED TO CLEEN UP THE CODE BASE
 var dis = null
+import isolatedExec from './exec?worker'
+var iso = new isolatedExec()
+iso.onmessage = (e) => {
+	if (e.data[0] == 'display') {
+		dis[e.data[1]](...e.data.slice(2))
+	}
+	if (e.data[0] == 'debug') {
+		debug[e.data[1]](e.data[2])
+	}
+}
 export class cpu {
 	constructor(display) {
 		this.d = display
 		dis = this.d
 		this.reset()
-		this.clock = new Clock(this.d)
+		iso.postMessage(['init'])
+		this.clock = new Clock(this.d, 24)
 	}
 	reset() {
-		cart.reset()
+		iso.postMessage(['reset'])
 		this.d.reset()
 		debug.reset()
-		skip = false
 	}
 	run(code) {
-		//Sanitize code
-		code = code.replace(/alert\(.*\)/g, '')
-		code = code.replace(/console\.log\(.*\)/g, '')
-		code = code.replace(/document\.querySelector\(.*\)/g, '')
-		code = code.replace(/document\.querySelectorAll\(.*\)/g, '')
-		code = code.replace(/document\.getElementById\(.*\)/g, '')
-		code = code.replace(/document\.getElementsByClassName\(.*\)/g, '')
-		code = code.replace(/document\.getElementsByTagName\(.*\)/g, '')
-		code = code.replace(/document\.getElementsByName\(.*\)/g, '')
-
 		this.reset()
-		try {eval(code)}catch(e){debug.err(e);cart.reset()}
+		iso.postMessage(['run',code])
 		//this.d.preDefinedScene('test')
 	}
 }
-//Clock and helper Systems
+
+//Clock
 class Clock {
-	constructor(d) {
+	constructor(d, h) {
 		this.clock = 0
 		this.lastTime = Date.now()
 		return setInterval(() => {
 			this.clock++
-			if (this.clock == 30) {
+			if (this.clock == h) {
 				this.clock = 0
-				if (skip != true) {
-					//TODO: added a striped down display fn
-					d.reset()
-					this.elapsed = (Date.now()-this.lastTime)/1000
-					cart.onUpdate({}, this.elapsed)
-					cart.onDraw({
-						drawPixel: (...a)=>d.drawPixel(...a),
-						pixel: (...a)=>d.drawPixel(...a),
-						rect: (...a)=>d.drawRect(...a),
-						text: (...a)=>d.drawText(...a),
-						line: (...a)=>d.drawLine(...a),
-						print: (...a)=>d.drawText(...a),
-						rest: (...a)=>d.reset(...a),
-						clear: (...a)=>d.reset(...a),
-						drawScene: (...a)=>d.preDefinedScene(...a),
-						drawSprite: (...a)=>d.drawBitmap(...a),
-						drawBitmap: (...a)=>d.drawBitmap(...a),
-						drawBackground: (...a)=>d.drawBackground(...a),
-					}, this.elapsed)
-					this.lastTime = Date.now()
-				} else if(skip == true) {
-				}
+				this.elapsed = (Date.now()-this.lastTime)/1000
+				iso.postMessage(['clockTick', {elapsed: this.elapsed}])
+				this.lastTime = Date.now()
 			}
 		}, 0)
 	}
 }
-var skip = false
 //APIs
-var cart = {
-	reset: ()=>{
-		cart.onDraw = ()=>{}
-		cart.onUpdate = ()=>{}
-	},
-	wait:(s)=>{
-		skip = true
-		//FIXME: the wait code
-		return new Promise((resolve) => setTimeout(()=>{skip = false;resolve()}, s));
-	},
-	debug: debug,
-	onDraw: ()=>{},
-	onUpdate: ()=>{}
-}
-function rand(min, max) {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-function randFloat(min, max) {
-	return Math.random() * (max - min + 1) + min;
-}
-function print(s) {
-	debug.log(s)
-}
+
 /*const sanitizer = new Sanitizer()
 sanitizer.sanitizeFor("div", s)*/
 var debug = {
+	_start: [],
+	onStart: (s)=>debug._start.push(s),
 	log: (s)=>{
-		document.getElementById('console').innerHTML += '<br>' + s
+		document.getElementById('console').innerHTML += '<br>[➡] ' + s
 	},
 	err: (s)=>{
-		document.getElementById('console').innerHTML += '<br><span style="color: crimson">' + s + '</span>'
+		document.getElementById('console').innerHTML += '<br><span style="color: crimson">[❌] ' + s + '</span>'
 	},
 	warn: (s)=>{
-		document.getElementById('console').innerHTML += '<br><span style="color: yellow">' + s + '</span>'
+		document.getElementById('console').innerHTML += '<br><span style="color: yellow">[⚠️] ' + s + '</span>'
 	},
 	pass: (s)=>{
-		document.getElementById('console').innerHTML += '<br><span style="color: springgreen">' + s + '</span>'
+		document.getElementById('console').innerHTML += '<br><span style="color: springgreen">[✔️] ' + s + '</span>'
 	},
 	info: (s)=>{
-		document.getElementById('console').innerHTML += '<br><span style="color: cornflowerblue">' + s + '</span>'
+		document.getElementById('console').innerHTML += '<br><span style="color: cornflowerblue">[ ℹ ] ' + s + '</span>'
 	},
 	reset: ()=>{
 		document.getElementById('console').innerHTML = ''
+		debug._start.forEach(e => {
+			debug.info(e)
+		})
 	}
 }

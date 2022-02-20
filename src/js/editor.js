@@ -33,7 +33,7 @@ let myTheme = EditorView.theme({
   }
 }, {dark: true})
 //cart class
-class cart {
+class cartridge {
   constructor(name, l) {
     this.name = name;
     this.bitmaps = []
@@ -58,7 +58,7 @@ var editor
 window.onload = () => {
   if (localStorage.getItem('current-cart')) {
     let c = JSON.parse(localStorage.getItem('current-cart'))
-    global_cart = new cart(c.name, c)
+    global_cart = new cartridge(c.name, c)
     editor = new EditorView({
       state: EditorState.create({
         extensions: [basicSetup, myTheme, javascript()]
@@ -70,7 +70,7 @@ window.onload = () => {
     })
     device.loadROM(global_cart)
   } else {
-    var global_cart = new cart('Untitled')
+    var global_cart = new cartridge('Untitled')
     editor = new EditorView({
       state: EditorState.create({
         extensions: [basicSetup, myTheme, javascript()]
@@ -99,7 +99,7 @@ device.reset()
 
 // new cart
 document.getElementById('create-btn').onclick = () => {
-  global_cart = new cart(document.getElementById('new-cart-name').value)
+  global_cart = new cartridge(document.getElementById('new-cart-name').value)
   localStorage.setItem('current-cart', global_cart.export())
   MicroModal.close('new')
   history.replaceState({}, "", "#")

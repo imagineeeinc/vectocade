@@ -6,7 +6,7 @@ A Fantasy Computer for making tiny retro games, made with js
 [here also](https://imagineeeinc.github.io/vectocade/)
 
 ## Specs
-Display: 160x144@30fps:2 bit colours (Gameboy Pallet)
+Display: 160x144@24fps:2 bit colours (Gameboy Pallet)
 Sound: Undecided (4 channel?)
 Control: 'A' n 'B', D pad, 'Start' n 'Select'
 

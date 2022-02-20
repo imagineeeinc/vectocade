@@ -63,7 +63,7 @@ export class display {
 		ctx.fillText(t,x*this.p,y*this.h)
 	}
 	drawBitmap(x,y,b) {}
-	drawBackground(x,y,b) {}
+	drawBitmap(x,y,b) {}
 }
 function resolveColour(n) {
 	if (n == 0) return white

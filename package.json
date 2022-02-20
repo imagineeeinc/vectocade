@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "deploy": "npm run build && cd dist && git init && git add -A && git commit -m 'deploy' && git push -f git@github.com:imagineeeinc/vectocade.git main:gh-pages"
   },
   "devDependencies": {
