@@ -2,8 +2,7 @@
 A Fantasy Computer for making tiny retro games, made with js
 
 # Get Started
-[here](https://vectocade.vercel.app/), 
-[here also](https://imagineeeinc.github.io/vectocade/)
+[here](https://vectocade.vercel.app/)
 
 ## Specs
 Display: 160x144@24fps:2 bit colours (Gameboy Pallet)

@@ -60,24 +60,31 @@ class Clock {
 
 /*const sanitizer = new Sanitizer()
 sanitizer.sanitizeFor("div", s)*/
-import * as sanitizeHtml from 'sanitize-html'
+function sanitize(html) {
+    var tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    var res = tmp.textContent || tmp.innerText || '';
+    res.replace('\u200B', ''); // zero width space
+    res = res.trim();
+    return res;
+}
 var debug = {
 	_start: [],
 	onStart: (s)=>debug._start.push(s),
 	log: (s)=>{
-		document.getElementById('console').innerHTML += '<br>[➡] ' + sanitizeHtml(s)
+		document.getElementById('console').innerHTML += '<br>[➡] ' + sanitize(s)
 	},
 	err: (s)=>{
-		document.getElementById('console').innerHTML += '<br><span style="color: crimson">[❌] ' + sanitizeHtml(s) + '</span>'
+		document.getElementById('console').innerHTML += '<br><span style="color: crimson">[❌] ' + sanitize(s) + '</span>'
 	},
 	warn: (s)=>{
-		document.getElementById('console').innerHTML += '<br><span style="color: yellow">[⚠️] ' + sanitizeHtml(s) + '</span>'
+		document.getElementById('console').innerHTML += '<br><span style="color: yellow">[⚠️] ' + sanitize(s) + '</span>'
 	},
 	pass: (s)=>{
-		document.getElementById('console').innerHTML += '<br><span style="color: springgreen">[✔️] ' + sanitizeHtml(s) + '</span>'
+		document.getElementById('console').innerHTML += '<br><span style="color: springgreen">[✔️] ' + sanitize(s) + '</span>'
 	},
 	info: (s)=>{
-		document.getElementById('console').innerHTML += '<br><span style="color: cornflowerblue">[ ℹ ] ' + sanitizeHtml(s) + '</span>'
+		document.getElementById('console').innerHTML += '<br><span style="color: cornflowerblue">[ ℹ ] ' + sanitize(s) + '</span>'
 	},
 	reset: ()=>{
 		document.getElementById('console').innerHTML = ''

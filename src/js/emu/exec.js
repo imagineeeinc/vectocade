@@ -33,6 +33,12 @@ var cart = {
 		}
 	},
 	debug: debug,
+	fn: {
+		random: rand,
+		randomFloat: randFloat,
+		rand: rand,
+		randFloat: randFloat,
+	},		
 	onDraw: (s)=>cart.drawFn = s,
 	drawFn: ()=>{},
 	onUpdate: (s)=>cart.updateFn = s,
@@ -57,9 +63,6 @@ function rand(min, max) {
 }
 function randFloat(min, max) {
 	return Math.random() * (max - min + 1) + min;
-}
-function print(s) {
-	debug.log(s)
 }
 
 var debug = {
@@ -95,6 +98,10 @@ function run(code) {
 	code = code.replace(/document\.getElementsByName\(.*\)/g, '')
 	code = code.replace(/importScripts\(.*\)/g, '')
 	code = code.replace(/postMessage\(.*\)/g, '')
+	code = code.replace(/onmessage\(.*\)/g, '')
+	code = code.replace(/import\(.*\)/g, '')
+	code = code.replace(/emuDisplay/g, '')
+	code = code.replace(/skip/g, '')
 	try {eval(code)}catch(e){debug.err(e);cart.reset()}
 
 }

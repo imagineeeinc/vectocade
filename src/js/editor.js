@@ -4,34 +4,7 @@ if (window.location.href.indexOf('#new') > -1) {
 	MicroModal.show('open');
 }
 import '../css/editor.css';
-import {EditorState, EditorView, basicSetup} from "@codemirror/basic-setup"
 import {javascript} from "@codemirror/lang-javascript"
-
-
-let myTheme = EditorView.theme({
-  "&": {
-		
-    color: "#e0f8cf",
-    backgroundColor: "#071821"
-  },
-  ".cm-content": {
-    caretColor: "#e0f8cf"
-  },
-  "&.cm-focused .cm-cursor": {
-    borderLeftColor: "#e0f8cf"
-  },
-  "&.cm-focused": {
-    backgroundColor: "#091f2b"
-	},
-	".cm-selectionBackground, ::selection": {
-		backgroundColor: "#195474"
-	},
-	".cm-gutters": {
-    backgroundColor: "#071821",
-    color: "#e0f8cf",
-    border: "none"
-  }
-}, {dark: true})
 //cart class
 class cartridge {
   constructor(name, l) {
@@ -55,7 +28,32 @@ class cartridge {
 }
 var global_cart
 var editor
-window.onload = () => {
+window.onload = async () => {
+  let {EditorState, EditorView, basicSetup} = await import("@codemirror/basic-setup")
+  let myTheme = EditorView.theme({
+    "&": {
+      
+      color: "#e0f8cf",
+      backgroundColor: "#071821"
+    },
+    ".cm-content": {
+      caretColor: "#e0f8cf"
+    },
+    "&.cm-focused .cm-cursor": {
+      borderLeftColor: "#e0f8cf"
+    },
+    "&.cm-focused": {
+      backgroundColor: "#091f2b"
+    },
+    ".cm-selectionBackground, ::selection": {
+      backgroundColor: "#195474"
+    },
+    ".cm-gutters": {
+      backgroundColor: "#071821",
+      color: "#e0f8cf",
+      border: "none"
+    }
+  }, {dark: true})
   if (localStorage.getItem('current-cart')) {
     let c = JSON.parse(localStorage.getItem('current-cart'))
     global_cart = new cartridge(c.name, c)
