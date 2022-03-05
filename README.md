@@ -1,6 +1,8 @@
 # vectocade
 A Fantasy Computer for making tiny retro games, made with js
 
+*⚠ Still in early developemnt, breaking changes to come ⚠*
+
 # Get Started
 [here](https://vectocade.vercel.app/)
 
