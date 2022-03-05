@@ -5,11 +5,11 @@ var y = 0
 cart.onDraw((display)=> {
   display.pixel(x,y,rand(0,3))
   x++
-  if (x > 160) {
+  if (x > 80) {
     x = 0
     y++
   }
-  if (y > 144) {
+  if (y > 72) {
     y=0
   }
 })
