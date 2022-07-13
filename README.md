@@ -1,11 +1,13 @@
 # vectocade
 A Fantasy Computer for making tiny retro games, made with js
 
+*⚠ Still in early developemnt, breaking changes to come ⚠*
+
 # Get Started
 [here](https://vectocade.vercel.app/)
 
 ## Specs
-Display: 160x144@24fps:2 bit colours (Gameboy Pallet)
+Display: 80x72@24fps:2 bit colours (Gameboy Pallet)
 Sound: Undecided (4 channel?)
 Control: 'A' n 'B', D pad, 'Start' n 'Select'
 
@@ -17,5 +19,5 @@ Control: 'A' n 'B', D pad, 'Start' n 'Select'
 - Probably a connectable keyboard for text inputs.
 
 ## Graphics
-you have 2 background layers, one collision, one none Collison, max background size is 2048x2048px.
+you have a background layers, max background size is 1024x1024px.
 Each sprite can only be 16x16px sprite, any decimal pixel values will be rounded to whole number.

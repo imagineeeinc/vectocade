@@ -9,13 +9,13 @@ export class display {
 		this.ctx.msImageSmoothingEnabled = false;
 		this.width = this.d.width
 		this.height = this.d.height
-		this.p = this.width/160
-		this.h = this.height/144
+		this.p = this.width/80
+		this.h = this.height/72
 		window.onresize = () => {
 			this.width = this.d.width
 			this.height = this.d.height
-			this.p = this.width/160
-			this.h = this.height/144
+			this.p = this.width/80
+			this.h = this.height/72
 		}
 	}
 	preDefinedScene(scene) {
@@ -27,14 +27,14 @@ export class display {
 			this.drawPixel(159, 0, 0)
 			this.drawPixel(0, 143, 0)
 			this.drawPixel(159, 143, 0)
-			this.drawPixel(160/2, 0, 0)
-			this.drawPixel(159, 144/2, 0)
-			this.drawPixel(160/2, 143, 0)
-			this.drawPixel(0, 144/2, 0)
-			this.drawLine(0, 0, 160, 144, 2)
-			this.drawLine(0, 144, 160, 0, 2)
-			this.drawRect(160/2, 144/2, 2, 2, 4)
-			this.drawText(160/4, 144/4, 'Hello World!', 3)
+			this.drawPixel(80/2, 0, 0)
+			this.drawPixel(159, 72/2, 0)
+			this.drawPixel(80/2, 143, 0)
+			this.drawPixel(0, 72/2, 0)
+			this.drawLine(0, 0, 80, 72, 2)
+			this.drawLine(0, 72, 80, 0, 2)
+			this.drawRect(80/2, 72/2, 2, 2, 4)
+			this.drawText(80/4, 72/4, 'Hello World!', 3)
 		}
 	}
 	reset() {
@@ -45,26 +45,34 @@ export class display {
 	drawPixel(x,y,c) {
 		let ctx = this.ctx
 		ctx.fillStyle = resolveColour(c)
-		ctx.fillRect(x*this.p,y*this.h,this.p,this.h)
+		ctx.fillRect(Math.round(x)*this.p,
+		Math.round(y)*this.h,
+		this.p,
+		this.h)
 	}
 	drawRect(x,y,w,h,c) {
 		let ctx = this.ctx
 		ctx.fillStyle = resolveColour(c)
-		ctx.fillRect(x*this.p,y*this.h,w*this.p,h*this.h)
+		ctx.fillRect(Math.round(x)*this.p,
+		Math.round(y)*this.h,
+		Math.round(w)*this.p,
+		Math.round(h)*this.h)
 	}
 	drawLine(x1,y1,x2,y2,c) {
 		let ctx = this.ctx
 		ctx.strokeStyle = resolveColour(c)
 		ctx.beginPath()
-		ctx.moveTo(x1*this.p,y1*this.h)
-		ctx.lineTo(x2*this.p,y2*this.h)
+		ctx.moveTo(Math.round(x1)*this.p,
+		Math.round(y1)*this.h)
+		ctx.lineTo(Math.round(x2)*this.p,
+		Math.round(y2)*this.h)
 		ctx.stroke()
 	}
 	drawText(x,y,t,c) {
 		let ctx = this.ctx
 		ctx.font = "15px 'bit8', 'VT323', monospace"
 		ctx.fillStyle = resolveColour(c)
-		ctx.fillText(t,x*this.p,y*this.h)
+		ctx.fillText(t,Math.round(x)*this.p,Math.round(y)*this.h)
 	}
 	drawBitmap(x,y,b) {
 		for(let row = 0;row < b.length;row++) {
@@ -78,6 +86,7 @@ export class display {
 	}
 }
 function resolveColour(n) {
+	n=Math.round(n)
 	if (n == 0) return white
 	if (n == 1) return black
 	if (n == 2) return grey
