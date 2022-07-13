@@ -24,11 +24,11 @@ export class cpu {
 		dis = this.d
 		this.reset()
 		iso.postMessage(['init'])
-		clockSpeed = 4.166
+		clockSpeed = 41.66
 		this.clock = new Clock(this.d)
 	}
 	reset() {
-		clockSpeed = 4.166
+		clockSpeed = 41.66
 		iso.postMessage(['reset'])
 		this.d.reset()
 		debug.reset()
@@ -47,7 +47,7 @@ class Clock {
 		this.lastTime = Date.now()
 		return setInterval(() => {
 			this.clock++
-			if (this.clock >= 100/clockSpeed) {
+			if (this.clock >= Math.floor(1000/clockSpeed)) {
 				this.clock = 0
 				this.elapsed = (Date.now()-this.lastTime)/1000
 				iso.postMessage(['clockTick', {elapsed: this.elapsed}])

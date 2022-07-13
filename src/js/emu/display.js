@@ -66,8 +66,16 @@ export class display {
 		ctx.fillStyle = resolveColour(c)
 		ctx.fillText(t,x*this.p,y*this.h)
 	}
-	drawBitmap(x,y,b) {}
-	drawBitmap(x,y,b) {}
+	drawBitmap(x,y,b) {
+		for(let row = 0;row < b.length;row++) {
+			let col = 0
+			let trow = b[row]
+			for(let col = 0;col < trow.length;col++) {
+				this.drawPixel(x+col, y+row, trow[col])
+				col++
+			}
+		}
+	}
 }
 function resolveColour(n) {
 	if (n == 0) return white
